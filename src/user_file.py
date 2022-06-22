@@ -4,14 +4,12 @@ import re
 
 
 class user:
-
-
-
-    def __init__(self, nom, email, DateNaissance):
+    def __init__(self, nom, email, DateNaissance, password):
         self.email = email
         self.nom = nom
         self.DateNaissance = DateNaissance
         self.regex = '^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$'
+        self.password = password
 
     def printUser(self):
         print(self.DateNaissance.strftime('%Y-%m-%d %H:%M:%S'))
