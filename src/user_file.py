@@ -28,5 +28,4 @@ class user:
         return False
 
 
-bob = user("nicolas", 'nico@gmail.com', datetime.date(2015, 6, 29))
-print(bob.isValid())
+

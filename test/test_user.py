@@ -1,6 +1,6 @@
-from calendar import day_abbr
-from user_file import user
 import datetime
+
+from user_file import user
 
 
 def test_old_user():
