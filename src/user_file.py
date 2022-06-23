@@ -1,7 +1,6 @@
 import datetime
+from itertools import count
 import re
-
-
 
 class user:
     def __init__(self, nom, email, DateNaissance, password):
@@ -18,14 +17,22 @@ class user:
         if(re.search(self.regex,email)):  
             return True
         else:  
-            return False 
+            return False
+
+    def check_password(self):
+        if len(self.password) > 7 and 41 > len(self.password):
+            return True
+        return False;
     
     def isValid(self):
         test =  datetime.date.today()  - self.DateNaissance
         print(datetime.date.today().strftime('%Y-%m-%d %H:%M:%S'))
-        if ( test > datetime.timedelta(days=4745) and len(self.nom) !=  0 and self.check_email(self.email) == True) :
+        if ( test > datetime.timedelta(days=4745) and len(self.nom) !=  0 and self.check_email(self.email) == True and self.check_password()) :
             return True
         return False
 
 
+
+# bob = user("nicolas", 'nico@genie.com', datetime.date.today()-datetime.timedelta(days=365*20), 'nicolasLemeilleur')
+# print(bob.check_password(), bob.password, len(bob.password));
 

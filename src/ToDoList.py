@@ -7,9 +7,9 @@ from Item import Item
 
 
 class ToDoList:
-    def __init__(self, user ,   item):
+    def __init__(self, user ):
         self.user = user
-        self.Items = item
+        self.Items = []
 
     def addItem(self, item):
         if len(self.Items) > 10:
@@ -30,10 +30,11 @@ class ToDoList:
 
 
 
+
+
 date1 = date(2015, 6, 29)
 
 bob = user("nicolas", 'nico@gmail.com', date(2015, 6, 29), "password")
-list = []
 item1 = Item("nicolas2", 'nico@gmail.com', datetime.datetime(2021, 11, 11, 11, 42))
 item2 = Item("nicolas2", 'nico@gmail.com', datetime.datetime(2021, 11, 12, 12, 42))
 item3 = Item("nicolas4", 'nico@gmail.com', datetime.datetime(2021, 11, 13, 12, 42))
@@ -43,7 +44,7 @@ item6 = Item("nicolas7", 'nico@gmail.com', datetime.datetime(2021, 11, 16, 16, 4
 item7 = Item("nicolas8", 'nico@gmail.com', datetime.datetime(2021, 11, 17, 17, 42))
 item8 = Item("nicolas9", 'nico@gmail.com', datetime.datetime(2021, 11, 17, 20, 42))
 item9 = Item("nicolas10", 'nico@gmail.com', datetime.datetime(2021, 11, 18, 20, 42))
-test = ToDoList(bob, list)
+test = ToDoList(bob)
 test.addItem(item1)
 test.addItem(item2)
 test.addItem(item3)
