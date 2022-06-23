@@ -1,6 +1,6 @@
 from calendar import day_abbr
 from user_file import user
-import datetime
+from datetime import datetime
 
 
 # TEST utilisateur correct 
@@ -38,6 +38,3 @@ def test_year_user():
     bob = user("nico", 'nico@toto.com', datetime.date.today()-datetime.timedelta(days=365*13 + 1), 'totottotototoot')
     test = bob.isValid()
     assert test == True
-
-
-

@@ -26,7 +26,6 @@ class user:
     
     def isValid(self):
         test =  datetime.date.today()  - self.DateNaissance
-        print(datetime.date.today().strftime('%Y-%m-%d %H:%M:%S'))
         if ( test > datetime.timedelta(days=4745) and len(self.nom) !=  0 and self.check_email(self.email) == True and self.check_password()) :
             return True
         return False

@@ -1,58 +1,60 @@
-import datetime
-from datetime import  date
-
-from src.EmailSenderService import EmailSenderService
+from datetime import datetime
+from datetime import timedelta
+from datetime import date
+from traceback import print_tb
 from user_file import user
 from Item import Item
 
 
 class ToDoList:
+
+    #Constructeur : verifie si user est valide 
     def __init__(self, user ):
-        self.user = user
-        self.Items = []
+        if user.isValid() == True:
+            self.user = user
+        else:
+            print("utilisateur non valide")
+        self.Itemstab = []
 
+    #constructeur ajout d'un item dans la ToDoLIst si l'item respecte les réglès
     def addItem(self, item):
-        if len(self.Items) > 10:
+        if Item.checkLenghtContent(item.content) == False or len(self.Itemstab) >= 10:
             return False
-        if len(self.Items) > 0  and  item.date - self.Items[-1].date < datetime.timedelta(minutes=30):
-            return False
-        for i in range(0, len(self.Items)):
-            if self.Items[i].name == item.name:
+        if len(self.Itemstab) > 0:
+            if ToDoList.verifdate(item, self.Itemstab[-1]) == False:
                 return False
-        print(item.name)
-        self.Items.append(item)
-        if len(self.Items) == 7:
-            email = EmailSenderService(self.user, item)
-            email.sendMail()
+        if ToDoList.verifName(item, self.Itemstab) == False:
+            return False
+        self.Itemstab.append(item)
+        if len(self.Itemstab) == 7:
+            return sendMail()
         return True
+    
+    #verifie si la difference de date est superieur a 30 minutes 
+    def verifdate(additem, Olditem):
+        if (additem.date - Olditem.date) < timedelta(minutes=30):
+            return False
+        return True
+    
+    #verifie si deux le nom de additem est pas présent dans la liste et si le nom est pas vide 
+    def verifName(addItem, listItem):
+        if len(addItem.name) == 0:
+            return False
+        for element in listItem:
+            if element.name == addItem.name:
+                return False
+        return True 
 
+#Partie pour le MOCKER 
+def sendMail():
+    print("A DEV")
 
-
-
-
-
-
-date1 = date(2015, 6, 29)
-
-bob = user("nicolas", 'nico@gmail.com', date(2015, 6, 29), "password")
-item1 = Item("nicolas2", 'nico@gmail.com', datetime.datetime(2021, 11, 11, 11, 42))
-item2 = Item("nicolas2", 'nico@gmail.com', datetime.datetime(2021, 11, 12, 12, 42))
-item3 = Item("nicolas4", 'nico@gmail.com', datetime.datetime(2021, 11, 13, 12, 42))
-item4 = Item("nicolas5", 'nico@gmail.com', datetime.datetime(2021, 11, 14, 14, 42))
-item5 = Item("nicolas6", 'nico@gmail.com', datetime.datetime(2021, 11, 15, 15, 42))
-item6 = Item("nicolas7", 'nico@gmail.com', datetime.datetime(2021, 11, 16, 16, 42))
-item7 = Item("nicolas8", 'nico@gmail.com', datetime.datetime(2021, 11, 17, 17, 42))
-item8 = Item("nicolas9", 'nico@gmail.com', datetime.datetime(2021, 11, 17, 20, 42))
-item9 = Item("nicolas10", 'nico@gmail.com', datetime.datetime(2021, 11, 18, 20, 42))
-test = ToDoList(bob)
-test.addItem(item1)
-test.addItem(item2)
-test.addItem(item3)
-test.addItem(item4)
-test.addItem(item5)
-test.addItem(item6)
-test.addItem(item7)
-test.addItem(item8)
-test.addItem(item9)
-print(test.Items[0].name)
-print(len(test.Items))
+itemtab = []
+for i in range(0, 7):
+    itemtab.append(Item("Tache " + str(i), 'prevoir 31 minutes' , datetime.now()+timedelta(minutes=31*i)))
+bob = user("nicolas", 'nico@genie.com', date.today()-timedelta(days=365*20), 'nicolasLemeilleur')
+Todo = ToDoList(bob)
+for element in itemtab:
+    Todo.addItem(element)
+item7 = Item("Tache 7", 'prevoir 31 minutes' , datetime.now()+timedelta(minutes=1440))
+print(len(Todo.Itemstab))
