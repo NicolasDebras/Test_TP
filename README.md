@@ -1,3 +1,6 @@
 # Test_TP
 
-Pour les tests ont à utilisé pytest et le test avec un mock pytest-mock
+On a utilisé pytest 
+et la lib pytest-mock (pip install pytest-mock)
+
+Il suffit de faire "pytest" dans le dossier src

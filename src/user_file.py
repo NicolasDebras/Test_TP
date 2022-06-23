@@ -1,5 +1,4 @@
 import datetime
-from itertools import count
 import re
 
 class user:
