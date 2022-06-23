@@ -49,12 +49,3 @@ class ToDoList:
 def sendMail():
     print("A DEV")
 
-itemtab = []
-for i in range(0, 7):
-    itemtab.append(Item("Tache " + str(i), 'prevoir 31 minutes' , datetime.now()+timedelta(minutes=31*i)))
-bob = user("nicolas", 'nico@genie.com', date.today()-timedelta(days=365*20), 'nicolasLemeilleur')
-Todo = ToDoList(bob)
-for element in itemtab:
-    Todo.addItem(element)
-item7 = Item("Tache 7", 'prevoir 31 minutes' , datetime.now()+timedelta(minutes=1440))
-print(len(Todo.Itemstab))
